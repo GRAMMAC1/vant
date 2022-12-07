@@ -303,6 +303,10 @@ location.href = location.href.replace('youzan.github.io', 'vant-ui.github.io');
                 title: 'Empty 空状态',
               },
               {
+                path: 'floating-panel',
+                title: 'FloatingPanel 浮动面板',
+              },
+              {
                 path: 'image-preview',
                 title: 'ImagePreview 图片预览',
               },
@@ -716,6 +720,10 @@ location.href = location.href.replace('youzan.github.io', 'vant-ui.github.io');
               {
                 path: 'empty',
                 title: 'Empty',
+              },
+              {
+                path: 'floating-panel',
+                title: 'FloatingPanel',
               },
               {
                 path: 'image-preview',
