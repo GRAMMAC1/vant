@@ -1,0 +1,44 @@
+:root {
+  --van-floating-panel-header: 28px;
+  --van-floating-panel-z-index: 999;
+}
+
+.van-floating-panel {
+  position: fixed;
+  flex-direction: row;
+  left: 0;
+  bottom: 0;
+  z-index: var(--van-floating-panel-z-index);
+
+  &__panel {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: -100vh;
+    background: 0 0;
+  }
+
+  &__header {
+    display: flex;
+    height: var(--van-floating-panel-header);
+    justify-content: center;
+    align-items: center;
+    background-color: var(--van-white);
+    border-top-left-radius: var(--van-radius-lg);
+    border-top-right-radius: van(--van-radius-lg);
+    cursor: grab;
+  }
+
+  &__bar {
+    width: 20px;
+    height: 3px;
+    border-radius: var(--van-radius-lg);
+    background: var(--van-gray-6);
+  }
+
+  &__content {
+    flex: 1;
+    background: van(--van-white);
+  }
+}
