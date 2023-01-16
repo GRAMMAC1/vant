@@ -95,10 +95,14 @@ Vant 组件通过丰富的 [CSS 变量](https://developer.mozilla.org/zh-CN/docs
 
 ```css
 /* 添加这段样式后，Primary Button 会变成红色 */
-:root {
+:root:root {
   --van-button-primary-background: red;
 }
 ```
+
+> 注意：为什么要写两个重复的 `:root`？
+>
+> 由于 vant 中的主题变量也是在 `:root` 下声明的，所以在有些情况下会由于优先级的问题无法成功覆盖。通过 `:root:root` 可以显式地让你所写内容的优先级更高一些，从而确保主题变量的成功覆盖。
 
 #### 通过 ConfigProvider 覆盖
 
@@ -127,7 +131,7 @@ Vant 组件通过丰富的 [CSS 变量](https://developer.mozilla.org/zh-CN/docs
 ```
 
 ```js
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 
 export default {
   setup() {
@@ -136,7 +140,7 @@ export default {
 
     // themeVars 内的值会被转换成对应 CSS 变量
     // 比如 sliderBarHeight 会转换成 `--van-slider-bar-height`
-    const themeVars = {
+    const themeVars = reactive({
       rateIconFullColor: '#07c160',
       sliderBarHeight: '4px',
       sliderButtonWidth: '20px',
@@ -144,7 +148,7 @@ export default {
       sliderActiveBackground: '#07c160',
       buttonPrimaryBackground: '#07c160',
       buttonPrimaryBorderColor: '#07c160',
-    };
+    });
 
     return {
       rate,
@@ -191,13 +195,13 @@ const themeVars: ConfigProviderThemeVars = {
 ```
 
 ```js
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 
 export default {
   setup() {
-    const themeVars = { buttonPrimaryBackground: 'red' };
-    const themeVarsDark = { buttonPrimaryBackground: 'blue' };
-    const themeVarsLight = { buttonPrimaryBackground: 'green' };
+    const themeVars = reactive({ buttonPrimaryBackground: 'red' });
+    const themeVarsDark = reactive({ buttonPrimaryBackground: 'blue' });
+    const themeVarsLight = reactive({ buttonPrimaryBackground: 'green' });
 
     return {
       themeVars,
@@ -258,7 +262,6 @@ Vant 中的 CSS 变量分为 **基础变量** 和 **组件变量**。组件变�
 --van-text-color: var(--van-gray-8);
 --van-text-color-2: var(--van-gray-6);
 --van-text-color-3: var(--van-gray-5);
---van-link-color: #576b95;
 --van-active-color: var(--van-gray-2);
 --van-active-opacity: 0.6;
 --van-disabled-opacity: 0.5;
